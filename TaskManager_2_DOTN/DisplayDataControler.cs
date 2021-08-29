@@ -10,6 +10,8 @@ namespace TaskManagerDOTN
         private OperatingSystemInfo operatingSystemInfo;
         private CPU_Info cpuInfo;
 
+        public ulong totalRamInstaled;
+
         public DisplayDataControler(Form1 mainForm)
         {
             this.mainForm = mainForm;
@@ -41,6 +43,9 @@ namespace TaskManagerDOTN
             operatingSystemInfo.architecture = (string)wmi["OSArchitecture"];
             operatingSystemInfo.serialNumber = (string)wmi["SerialNumber"];
             operatingSystemInfo.build = (string)wmi["BuildNumber"];
+
+            var ram = new ManagementObjectSearcher("select * from Win32_ComputerSystem").Get().Cast<ManagementObject>().First();
+            totalRamInstaled = (ulong)ram["TotalPhysicalMemory"];
 
             var cpu = new ManagementObjectSearcher("select * from Win32_Processor").Get().Cast<ManagementObject>().First();
 

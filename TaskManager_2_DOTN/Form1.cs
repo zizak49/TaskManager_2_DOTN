@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Management;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TaskManagerDOTN
@@ -20,13 +14,13 @@ namespace TaskManagerDOTN
 
         private DisplayDataControler displayDataControler;
         private ProcessMonitor processMonitor;
-        PerformanceCounter cpuUsage;
+        private PerformanceCounter cpuUsage;
 
         private long totalUsedMemory = 0;
 
         private Timer dataRefresh;
 
-        private int timeFromStart = 0;
+        private int gridlinesOffset = 0;
 
         public Form1()
         {
@@ -45,18 +39,13 @@ namespace TaskManagerDOTN
             displayDataControler.UpdateOSData();
             displayDataControler.UpdateCPUData();
 
-            chart1.Series[0].ChartType = SeriesChartType.Line;
-            chart1.Series[0].IsValueShownAsLabel = false;
-            chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            chart1.ChartAreas["ChartArea1"].AxisX.Title = "Time(1s)";
-            chart1.ChartAreas["ChartArea1"].AxisY.Title = "% Utilization";
-            chart1.Series[0].Points.AddXY(0, 0);
+            SetUpCharts();
 
             //Timer for updating data
             InitTimer();
         }
 
-        private void LoadAllProcesses() 
+        private void LoadAllProcesses()
         {
             processes = Process.GetProcesses().ToList();
 
@@ -66,7 +55,7 @@ namespace TaskManagerDOTN
             }
 
             processesListBox.ValueMember = "ProcessName";
-        }   
+        }
 
         private void end_process_Click(object sender, EventArgs e)
         {
@@ -87,19 +76,18 @@ namespace TaskManagerDOTN
             {
                 DisplayProcessInfo(processes[processesListBox.SelectedIndex]);
             }
-            catch (Exception) 
-            {          
+            catch (Exception)
+            {
                 processesListBox.SelectedIndex = 1;
             }
         }
 
-        private void DisplayProcessInfo(Process selectedProcess) 
+        private void DisplayProcessInfo(Process selectedProcess)
         {
             processMonitor.UpdateSelectedProcess(selectedProcess, this);
-            
         }
 
-        public static long ConvertToMB(long number) 
+        public static long ConvertToMB(long number)
         {
             number = (number / 1024) / 1024;
             return number;
@@ -118,10 +106,8 @@ namespace TaskManagerDOTN
             UpdateData();
         }
 
-        private void UpdateData() 
+        private void UpdateData()
         {
-            timeFromStart++;
-
             if (selectedProcess != null)
             {
                 processMonitor.UpdateSelectedProcess(selectedProcess, this);
@@ -135,12 +121,52 @@ namespace TaskManagerDOTN
             }
             totalUsedMemoryVal.Text = ConvertToMB(totalUsedMemory).ToString() + " MB";
 
-            chart1.Series[0].Points.AddXY(timeFromStart, cpuUsage.NextValue());
+            UpdateCharts();
         }
 
-        private void SystemInformation_Click(object sender, EventArgs e)
+        private void UpdateCharts()
         {
+            cpuChart.Series[0].Points.AddY(cpuUsage.NextValue());
+            ramChart.Series[0].Points.AddY(ConvertToMB(totalUsedMemory));
 
+            cpuChart.Series["Series1"].Points.RemoveAt(0);
+            ramChart.Series["Series1"].Points.RemoveAt(0);
+
+            // Make gridlines move.
+            cpuChart.ChartAreas[0].AxisX.MajorGrid.IntervalOffset = -gridlinesOffset;
+            ramChart.ChartAreas[0].AxisX.MajorGrid.IntervalOffset = -gridlinesOffset;
+
+            // Calculate next offset.
+            gridlinesOffset++;
+            gridlinesOffset %= (int)cpuChart.ChartAreas[0].AxisX.MajorGrid.Interval;
+        }
+
+        private void SetUpCharts()
+        {
+            cpuChart.Series[0].ChartType = SeriesChartType.Line;
+            cpuChart.Series[0].IsValueShownAsLabel = false;
+            cpuChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
+            cpuChart.ChartAreas["ChartArea1"].AxisX.Title = "Time(1s)";
+            cpuChart.ChartAreas["ChartArea1"].AxisY.Title = "% Utilization";
+            cpuChart.ChartAreas[0].AxisX.MajorGrid.Interval = 10;
+            cpuChart.ChartAreas[0].AxisY.MajorGrid.Interval = 10;
+            cpuChart.ChartAreas[0].AxisX.Minimum = 0;
+            cpuChart.ChartAreas[0].AxisX.Maximum = 60;
+            cpuChart.ChartAreas[0].AxisY.Minimum = 0;
+            cpuChart.ChartAreas[0].AxisY.Maximum = 100;
+
+            for (int i = 0; i < 60; i++)
+            {
+                cpuChart.Series[0].Points.AddY(0);
+                ramChart.Series[0].Points.AddY(0);
+            }
+
+            ramChart.Series[0].ChartType = SeriesChartType.Line;
+            ramChart.Series[0].IsValueShownAsLabel = false;
+            ramChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
+            ramChart.ChartAreas["ChartArea1"].AxisX.Title = "Memory usage (MB)";
+            ramChart.ChartAreas[0].AxisY.Minimum = 0;
+            ramChart.ChartAreas[0].AxisY.Maximum = ConvertToMB((long)displayDataControler.totalRamInstaled);
         }
     }
 }
