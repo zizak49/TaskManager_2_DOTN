@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Management;
 
-namespace TaskManagerDOTN
+namespace TaskManager_2_DOTN
 {
     class DisplayDataControler
     {

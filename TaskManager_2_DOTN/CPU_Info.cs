@@ -1,4 +1,4 @@
-﻿namespace TaskManagerDOTN
+﻿namespace TaskManager_2_DOTN
 {
     public struct CPU_Info
     {

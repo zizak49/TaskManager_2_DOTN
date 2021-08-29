@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace TaskManagerDOTN
+namespace TaskManager_2_DOTN
 {
     public partial class Form1 : Form
     {
@@ -15,6 +15,7 @@ namespace TaskManagerDOTN
         private DisplayDataControler displayDataControler;
         private ProcessMonitor processMonitor;
         private PerformanceCounter cpuUsage;
+        private ServicesManager servicesManager;
 
         private long totalUsedMemory = 0;
 

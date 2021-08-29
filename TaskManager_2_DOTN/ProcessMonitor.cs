@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace TaskManagerDOTN
+namespace TaskManager_2_DOTN
 {
     class ProcessMonitor
     {

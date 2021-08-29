@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TaskManagerDOTN
+namespace TaskManager_2_DOTN
 {
     static class Program
     {
