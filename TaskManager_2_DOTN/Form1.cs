@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TaskManager_2_DOTN
 {
@@ -14,14 +13,13 @@ namespace TaskManager_2_DOTN
 
         private DisplayDataControler displayDataControler;
         private ProcessMonitor processMonitor;
-        private PerformanceCounter cpuUsage;
         private ServicesManager servicesManager;
+        private ChartManager chartManager;
 
         private long totalUsedMemory = 0;
 
         private Timer dataRefresh;
 
-        private int gridlinesOffset = 0;
 
         public Form1()
         {
@@ -32,15 +30,19 @@ namespace TaskManager_2_DOTN
 
             //Load and display static information
             displayDataControler = new DisplayDataControler(this);
-            processMonitor = new ProcessMonitor();
 
-            cpuUsage = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            processMonitor = new ProcessMonitor();
+            servicesManager = new ServicesManager();
+
+            servicesManager.LoadAllServices();
+            servicesGridView.DataSource = servicesManager.Services;
 
             displayDataControler.LoadSystemInformation();
             displayDataControler.UpdateOSData();
             displayDataControler.UpdateCPUData();
 
-            SetUpCharts();
+            chartManager = new ChartManager(cpuChart, ramChart);
+            chartManager.SetUpCharts(displayDataControler.totalRamInstaled);
 
             //Timer for updating data
             InitTimer();
@@ -122,52 +124,11 @@ namespace TaskManager_2_DOTN
             }
             totalUsedMemoryVal.Text = ConvertToMB(totalUsedMemory).ToString() + " MB";
 
-            UpdateCharts();
+            chartManager.UpdateCharts(totalUsedMemory);
         }
-
-        private void UpdateCharts()
+        private void button1_Click(object sender, EventArgs e)
         {
-            cpuChart.Series[0].Points.AddY(cpuUsage.NextValue());
-            ramChart.Series[0].Points.AddY(ConvertToMB(totalUsedMemory));
 
-            cpuChart.Series["Series1"].Points.RemoveAt(0);
-            ramChart.Series["Series1"].Points.RemoveAt(0);
-
-            // Make gridlines move.
-            cpuChart.ChartAreas[0].AxisX.MajorGrid.IntervalOffset = -gridlinesOffset;
-            ramChart.ChartAreas[0].AxisX.MajorGrid.IntervalOffset = -gridlinesOffset;
-
-            // Calculate next offset.
-            gridlinesOffset++;
-            gridlinesOffset %= (int)cpuChart.ChartAreas[0].AxisX.MajorGrid.Interval;
-        }
-
-        private void SetUpCharts()
-        {
-            cpuChart.Series[0].ChartType = SeriesChartType.Line;
-            cpuChart.Series[0].IsValueShownAsLabel = false;
-            cpuChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            cpuChart.ChartAreas["ChartArea1"].AxisX.Title = "Time(1s)";
-            cpuChart.ChartAreas["ChartArea1"].AxisY.Title = "% Utilization";
-            cpuChart.ChartAreas[0].AxisX.MajorGrid.Interval = 10;
-            cpuChart.ChartAreas[0].AxisY.MajorGrid.Interval = 10;
-            cpuChart.ChartAreas[0].AxisX.Minimum = 0;
-            cpuChart.ChartAreas[0].AxisX.Maximum = 60;
-            cpuChart.ChartAreas[0].AxisY.Minimum = 0;
-            cpuChart.ChartAreas[0].AxisY.Maximum = 100;
-
-            for (int i = 0; i < 60; i++)
-            {
-                cpuChart.Series[0].Points.AddY(0);
-                ramChart.Series[0].Points.AddY(0);
-            }
-
-            ramChart.Series[0].ChartType = SeriesChartType.Line;
-            ramChart.Series[0].IsValueShownAsLabel = false;
-            ramChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
-            ramChart.ChartAreas["ChartArea1"].AxisX.Title = "Memory usage (MB)";
-            ramChart.ChartAreas[0].AxisY.Minimum = 0;
-            ramChart.ChartAreas[0].AxisY.Maximum = ConvertToMB((long)displayDataControler.totalRamInstaled);
         }
     }
 }

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartManager.cs" />
     <Compile Include="CPU_Info.cs" />
     <Compile Include="DisplayDataControler.cs" />
     <Compile Include="Form1.cs">

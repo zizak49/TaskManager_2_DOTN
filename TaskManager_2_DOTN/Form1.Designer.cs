@@ -29,12 +29,12 @@ namespace TaskManager_2_DOTN
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SystemInformation = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,7 +67,8 @@ namespace TaskManager_2_DOTN
             this.cpuText = new System.Windows.Forms.Label();
             this.cpuChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Services = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.servicesGridView = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SystemInformation.SuspendLayout();
             this.Processes.SuspendLayout();
@@ -75,7 +76,7 @@ namespace TaskManager_2_DOTN
             ((System.ComponentModel.ISupportInitialize)(this.ramChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpuChart)).BeginInit();
             this.Services.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -374,18 +375,18 @@ namespace TaskManager_2_DOTN
             // 
             // ramChart
             // 
-            chartArea5.Name = "ChartArea1";
-            this.ramChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.ramChart.Legends.Add(legend5);
+            chartArea3.Name = "ChartArea1";
+            this.ramChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.ramChart.Legends.Add(legend3);
             this.ramChart.Location = new System.Drawing.Point(12, 222);
             this.ramChart.Name = "ramChart";
             this.ramChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series5.ChartArea = "ChartArea1";
-            series5.IsVisibleInLegend = false;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.ramChart.Series.Add(series5);
+            series3.ChartArea = "ChartArea1";
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.ramChart.Series.Add(series3);
             this.ramChart.Size = new System.Drawing.Size(644, 120);
             this.ramChart.TabIndex = 3;
             this.ramChart.Text = "ramChart";
@@ -410,24 +411,25 @@ namespace TaskManager_2_DOTN
             // 
             // cpuChart
             // 
-            chartArea6.Name = "ChartArea1";
-            this.cpuChart.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.cpuChart.Legends.Add(legend6);
+            chartArea4.Name = "ChartArea1";
+            this.cpuChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.cpuChart.Legends.Add(legend4);
             this.cpuChart.Location = new System.Drawing.Point(6, 49);
             this.cpuChart.Name = "cpuChart";
-            series6.ChartArea = "ChartArea1";
-            series6.IsVisibleInLegend = false;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.cpuChart.Series.Add(series6);
+            series4.ChartArea = "ChartArea1";
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.cpuChart.Series.Add(series4);
             this.cpuChart.Size = new System.Drawing.Size(644, 120);
             this.cpuChart.TabIndex = 0;
             this.cpuChart.Text = "cpuChart";
             // 
             // Services
             // 
-            this.Services.Controls.Add(this.dataGridView1);
+            this.Services.Controls.Add(this.button1);
+            this.Services.Controls.Add(this.servicesGridView);
             this.Services.Location = new System.Drawing.Point(4, 22);
             this.Services.Name = "Services";
             this.Services.Size = new System.Drawing.Size(656, 364);
@@ -435,13 +437,23 @@ namespace TaskManager_2_DOTN
             this.Services.Text = "Services";
             this.Services.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // servicesGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 94);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(650, 267);
-            this.dataGridView1.TabIndex = 0;
+            this.servicesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.servicesGridView.Location = new System.Drawing.Point(3, 94);
+            this.servicesGridView.Name = "servicesGridView";
+            this.servicesGridView.Size = new System.Drawing.Size(650, 267);
+            this.servicesGridView.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(265, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -462,7 +474,7 @@ namespace TaskManager_2_DOTN
             ((System.ComponentModel.ISupportInitialize)(this.ramChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cpuChart)).EndInit();
             this.Services.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -508,7 +520,8 @@ namespace TaskManager_2_DOTN
         private System.Windows.Forms.Label cpuText;
         private System.Windows.Forms.DataVisualization.Charting.Chart ramChart;
         private System.Windows.Forms.Label ramText;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView servicesGridView;
+        private System.Windows.Forms.Button button1;
     }
 }
 
