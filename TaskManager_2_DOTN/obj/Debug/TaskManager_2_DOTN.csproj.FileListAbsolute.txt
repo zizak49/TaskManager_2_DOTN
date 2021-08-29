@@ -1,0 +1,10 @@
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.csprojAssemblyReference.cache
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.Properties.Resources.resources
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.csproj.GenerateResource.cache
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.csproj.CoreCompileInputs.cache
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManagerDOTN.Form1.resources
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\bin\Debug\TaskManager_2_DOTN.exe.config
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\bin\Debug\TaskManager_2_DOTN.exe
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\bin\Debug\TaskManager_2_DOTN.pdb
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.exe
+C:\Users\Mislav\source\repos\TaskManager_2_DOTN\TaskManager_2_DOTN\obj\Debug\TaskManager_2_DOTN.pdb
