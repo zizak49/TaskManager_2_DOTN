@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Management;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace TaskManagerDOTN
 {
@@ -19,10 +20,13 @@ namespace TaskManagerDOTN
 
         private DisplayDataControler displayDataControler;
         private ProcessMonitor processMonitor;
+        PerformanceCounter cpuUsage;
 
         private long totalUsedMemory = 0;
 
         private Timer dataRefresh;
+
+        private int timeFromStart = 0;
 
         public Form1()
         {
@@ -34,10 +38,20 @@ namespace TaskManagerDOTN
             //Load and display static information
             displayDataControler = new DisplayDataControler(this);
             processMonitor = new ProcessMonitor();
+
+            cpuUsage = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+
             displayDataControler.LoadSystemInformation();
             displayDataControler.UpdateOSData();
             displayDataControler.UpdateCPUData();
-            
+
+            chart1.Series[0].ChartType = SeriesChartType.Line;
+            chart1.Series[0].IsValueShownAsLabel = false;
+            chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
+            chart1.ChartAreas["ChartArea1"].AxisX.Title = "Time(1s)";
+            chart1.ChartAreas["ChartArea1"].AxisY.Title = "% Utilization";
+            chart1.Series[0].Points.AddXY(0, 0);
+
             //Timer for updating data
             InitTimer();
         }
@@ -106,17 +120,22 @@ namespace TaskManagerDOTN
 
         private void UpdateData() 
         {
+            timeFromStart++;
+
             if (selectedProcess != null)
             {
                 processMonitor.UpdateSelectedProcess(selectedProcess, this);
             }
 
             totalUsedMemory = 0;
+
             foreach (Process process in processes)
             {
                 totalUsedMemory += process.WorkingSet64;
             }
             totalUsedMemoryVal.Text = ConvertToMB(totalUsedMemory).ToString() + " MB";
+
+            chart1.Series[0].Points.AddXY(timeFromStart, cpuUsage.NextValue());
         }
 
         private void SystemInformation_Click(object sender, EventArgs e)
