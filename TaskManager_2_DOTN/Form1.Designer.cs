@@ -447,7 +447,6 @@ namespace TaskManager_2_DOTN
             this.startService.TabIndex = 1;
             this.startService.Text = "Start";
             this.startService.UseVisualStyleBackColor = true;
-            this.startService.Click += new System.EventHandler(this.startServiceClick);
             // 
             // servicesGridView
             // 
@@ -460,7 +459,6 @@ namespace TaskManager_2_DOTN
             this.servicesGridView.Name = "servicesGridView";
             this.servicesGridView.Size = new System.Drawing.Size(650, 267);
             this.servicesGridView.TabIndex = 0;
-            this.servicesGridView.SelectionChanged += new System.EventHandler(this.servicesGridView_SelectionChanged);
             // 
             // stopService
             // 
