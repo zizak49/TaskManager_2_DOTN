@@ -377,6 +377,7 @@ namespace TaskManagerDOTN
             this.ramChart.Legends.Add(legend1);
             this.ramChart.Location = new System.Drawing.Point(12, 222);
             this.ramChart.Name = "ramChart";
+            this.ramChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
