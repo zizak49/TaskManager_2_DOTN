@@ -32,10 +32,11 @@ namespace TaskManager_2_DOTN
             displayDataControler = new DisplayDataControler(this);
 
             processMonitor = new ProcessMonitor();
-            servicesManager = new ServicesManager();
+            servicesManager = new ServicesManager(servicesGridView, startService, stopService);
 
             servicesManager.LoadAllServices();
             servicesGridView.DataSource = servicesManager.Services;
+            servicesGridView.Select();
 
             displayDataControler.LoadSystemInformation();
             displayDataControler.UpdateOSData();
@@ -48,6 +49,7 @@ namespace TaskManager_2_DOTN
             InitTimer();
         }
 
+        #region Processes tab
         private void LoadAllProcesses()
         {
             processes = Process.GetProcesses().ToList();
@@ -90,6 +92,8 @@ namespace TaskManager_2_DOTN
             processMonitor.UpdateSelectedProcess(selectedProcess, this);
         }
 
+        #endregion
+
         public static long ConvertToMB(long number)
         {
             number = (number / 1024) / 1024;
@@ -125,10 +129,6 @@ namespace TaskManager_2_DOTN
             totalUsedMemoryVal.Text = ConvertToMB(totalUsedMemory).ToString() + " MB";
 
             chartManager.UpdateCharts(totalUsedMemory);
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
