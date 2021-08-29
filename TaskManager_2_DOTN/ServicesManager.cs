@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
 using System.Windows.Forms;
 
@@ -34,25 +31,30 @@ namespace TaskManager_2_DOTN
         public void LoadAllServices() 
         {
             services = ServiceController.GetServices();
+            dataGridView.DataSource = services;
         }
 
         private void servicesGridView_SelectionChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine(dataGridView.CurrentRow);
+            selectedRow = dataGridView.CurrentRow;
         }
 
-        public void SelectedRowChanged(DataGridViewRow selectedRow) 
-        {
-                this.selectedRow = selectedRow;
-        }
         private void stopService_Click(object sender, EventArgs e)
         {
-
+            if (services[selectedRow.Index].Status == ServiceControllerStatus.Running)
+            {
+                services[selectedRow.Index].Stop();
+                LoadAllServices();
+            }
         }
 
         private void startServiceClick(object sender, EventArgs e)
         {
-
+            if (services[selectedRow.Index].Status == ServiceControllerStatus.Stopped)
+            {
+                services[selectedRow.Index].Start();
+                LoadAllServices();
+            } 
         }
     }
 }
