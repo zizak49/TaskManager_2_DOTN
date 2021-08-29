@@ -35,8 +35,6 @@ namespace TaskManager_2_DOTN
             servicesManager = new ServicesManager(servicesGridView, startService, stopService);
 
             servicesManager.LoadAllServices();
-            servicesGridView.DataSource = servicesManager.Services;
-            servicesGridView.Select();
 
             displayDataControler.LoadSystemInformation();
             displayDataControler.UpdateOSData();
@@ -64,27 +62,32 @@ namespace TaskManager_2_DOTN
 
         private void end_process_Click(object sender, EventArgs e)
         {
-            selectedProcess = processes[processesListBox.SelectedIndex];
+            try
+            {
+                selectedProcess = processes[processesListBox.SelectedIndex];
 
-            selectedProcess.Kill();
-            selectedProcess.WaitForExit();
+                selectedProcess.Kill();
+                selectedProcess.WaitForExit();
 
-            processes.Remove(selectedProcess);
-            processesListBox.Items.RemoveAt(processesListBox.SelectedIndex);
+                processes.Remove(selectedProcess);
+                processesListBox.Items.RemoveAt(processesListBox.SelectedIndex);
 
-            processesListBox.Refresh();
+                processesListBox.Refresh();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Can't close that process");
+                throw;
+            }
         }
 
         private void processesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                DisplayProcessInfo(processes[processesListBox.SelectedIndex]);
-            }
-            catch (Exception)
+            if (processesListBox.SelectedIndex < 0)
             {
                 processesListBox.SelectedIndex = 1;
             }
+            DisplayProcessInfo(processes[processesListBox.SelectedIndex]);
         }
 
         private void DisplayProcessInfo(Process selectedProcess)
