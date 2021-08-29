@@ -26,9 +26,11 @@ namespace TaskManager_2_DOTN
             this.stop.Click += new EventHandler(stopService_Click);
 
             this.dataGridView.SelectionChanged += new EventHandler(servicesGridView_SelectionChanged);
+
+            LoadAllServices();
         }
 
-        public void LoadAllServices() 
+        private void LoadAllServices() 
         {
             services = ServiceController.GetServices();
             dataGridView.DataSource = services;

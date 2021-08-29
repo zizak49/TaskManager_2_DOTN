@@ -20,7 +20,6 @@ namespace TaskManager_2_DOTN
 
         private Timer dataRefresh;
 
-
         public Form1()
         {
             InitializeComponent();
@@ -33,8 +32,6 @@ namespace TaskManager_2_DOTN
 
             processMonitor = new ProcessMonitor();
             servicesManager = new ServicesManager(servicesGridView, startService, stopService);
-
-            servicesManager.LoadAllServices();
 
             displayDataControler.LoadSystemInformation();
             displayDataControler.UpdateOSData();
