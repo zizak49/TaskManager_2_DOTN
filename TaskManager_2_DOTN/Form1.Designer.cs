@@ -312,7 +312,7 @@ namespace TaskManager_2_DOTN
             this.endProcess.TabIndex = 7;
             this.endProcess.Text = "End process";
             this.endProcess.UseVisualStyleBackColor = true;
-            this.endProcess.Click += new System.EventHandler(this.end_process_Click);
+            this.endProcess.Click += new System.EventHandler(this.End_process_Click);
             // 
             // totalUsedMemoryVal
             // 
@@ -339,7 +339,7 @@ namespace TaskManager_2_DOTN
             this.processesListBox.Name = "processesListBox";
             this.processesListBox.Size = new System.Drawing.Size(244, 303);
             this.processesListBox.TabIndex = 2;
-            this.processesListBox.SelectedIndexChanged += new System.EventHandler(this.processesListBox_SelectedIndexChanged);
+            this.processesListBox.SelectedIndexChanged += new System.EventHandler(this.ProcessesListBox_SelectedIndexChanged);
             // 
             // processMemoryUsage
             // 

@@ -57,7 +57,7 @@ namespace TaskManager_2_DOTN
             processesListBox.ValueMember = "ProcessName";
         }
 
-        private void end_process_Click(object sender, EventArgs e)
+        private void End_process_Click(object sender, EventArgs e)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace TaskManager_2_DOTN
             }
         }
 
-        private void processesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ProcessesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (processesListBox.SelectedIndex < 0)
             {

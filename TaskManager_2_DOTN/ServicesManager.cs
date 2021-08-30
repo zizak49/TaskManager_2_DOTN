@@ -22,10 +22,10 @@ namespace TaskManager_2_DOTN
             this.start = start;
             this.stop = stop;
 
-            this.start.Click += new EventHandler(startServiceClick);
-            this.stop.Click += new EventHandler(stopService_Click);
+            this.start.Click += new EventHandler(StartServiceClick);
+            this.stop.Click += new EventHandler(StopService_Click);
 
-            this.dataGridView.SelectionChanged += new EventHandler(servicesGridView_SelectionChanged);
+            this.dataGridView.SelectionChanged += new EventHandler(ServicesGridView_SelectionChanged);
 
             LoadAllServices();
         }
@@ -36,12 +36,12 @@ namespace TaskManager_2_DOTN
             dataGridView.DataSource = services;
         }
 
-        private void servicesGridView_SelectionChanged(object sender, EventArgs e)
+        private void ServicesGridView_SelectionChanged(object sender, EventArgs e)
         {
             selectedRow = dataGridView.CurrentRow;
         }
 
-        private void stopService_Click(object sender, EventArgs e)
+        private void StopService_Click(object sender, EventArgs e)
         {
             if (services[selectedRow.Index].Status == ServiceControllerStatus.Running)
             {
@@ -50,7 +50,7 @@ namespace TaskManager_2_DOTN
             }
         }
 
-        private void startServiceClick(object sender, EventArgs e)
+        private void StartServiceClick(object sender, EventArgs e)
         {
             if (services[selectedRow.Index].Status == ServiceControllerStatus.Stopped)
             {
