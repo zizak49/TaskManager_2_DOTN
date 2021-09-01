@@ -29,15 +29,15 @@ namespace TaskManager_2_DOTN
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SystemInformation = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
+            this.coreNumber = new System.Windows.Forms.Label();
             this.cache = new System.Windows.Forms.Label();
             this.socketType = new System.Windows.Forms.Label();
             this.prrocesorrName = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@ namespace TaskManager_2_DOTN
             // 
             // SystemInformation
             // 
-            this.SystemInformation.Controls.Add(this.label7);
+            this.SystemInformation.Controls.Add(this.coreNumber);
             this.SystemInformation.Controls.Add(this.cache);
             this.SystemInformation.Controls.Add(this.socketType);
             this.SystemInformation.Controls.Add(this.prrocesorrName);
@@ -111,15 +111,15 @@ namespace TaskManager_2_DOTN
             this.SystemInformation.Text = "System Information";
             this.SystemInformation.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // coreNumber
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(30, 260);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "label7";
+            this.coreNumber.AutoSize = true;
+            this.coreNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coreNumber.Location = new System.Drawing.Point(30, 260);
+            this.coreNumber.Name = "coreNumber";
+            this.coreNumber.Size = new System.Drawing.Size(126, 20);
+            this.coreNumber.TabIndex = 10;
+            this.coreNumber.Text = "Number of cores";
             // 
             // cache
             // 
@@ -376,18 +376,18 @@ namespace TaskManager_2_DOTN
             // 
             // ramChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.ramChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.ramChart.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.ramChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.ramChart.Legends.Add(legend3);
             this.ramChart.Location = new System.Drawing.Point(12, 222);
             this.ramChart.Name = "ramChart";
             this.ramChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.ramChart.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.ramChart.Series.Add(series3);
             this.ramChart.Size = new System.Drawing.Size(644, 120);
             this.ramChart.TabIndex = 3;
             this.ramChart.Text = "ramChart";
@@ -412,17 +412,17 @@ namespace TaskManager_2_DOTN
             // 
             // cpuChart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.cpuChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.cpuChart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.cpuChart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.cpuChart.Legends.Add(legend4);
             this.cpuChart.Location = new System.Drawing.Point(6, 49);
             this.cpuChart.Name = "cpuChart";
-            series2.ChartArea = "ChartArea1";
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.cpuChart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.IsVisibleInLegend = false;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.cpuChart.Series.Add(series4);
             this.cpuChart.Size = new System.Drawing.Size(644, 120);
             this.cpuChart.TabIndex = 0;
             this.cpuChart.Text = "cpuChart";
@@ -513,7 +513,7 @@ namespace TaskManager_2_DOTN
         public System.Windows.Forms.Label serialNumber;
 
         public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label coreNumber;
         public System.Windows.Forms.Label cache;
         public System.Windows.Forms.Label socketType;
         public System.Windows.Forms.Label prrocesorrName;
